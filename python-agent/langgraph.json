@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/narcissus/agent.py:create_agent"
+  },
+  "env": ".env"
+}
