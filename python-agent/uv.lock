@@ -3,6 +3,22 @@ revision = 2
 requires-python = ">=3.11"
 
 [[package]]
+name = "aci-sdk"
+version = "1.0.0b3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "griffe" },
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "tenacity" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c1/d4/7b7e723e935f6bc0e6c9c6c274536a8aefdbce1c5ff88f0a7123715cf2d5/aci_sdk-1.0.0b3.tar.gz", hash = "sha256:f4ff452419c9baac3c86787f3ae85123712706668397fe1b7780ffb85b1b06b1", size = 64225, upload-time = "2025-07-05T22:53:32.213Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4f/95/231ce4f25f78bf8f3e35d2d9e3603895e162104c33450a08b5912303f512/aci_sdk-1.0.0b3-py3-none-any.whl", hash = "sha256:828bd478a633dea0aa7ffe8857e5bc2339e1eb06b47155ed74372d7dbd46f24f", size = 32225, upload-time = "2025-07-05T22:53:30.895Z" },
+]
+
+[[package]]
 name = "annotated-types"
 version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -265,6 +281,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/67/10/b2a4b63d3f08362662e89c103f7fe28894a51ae0bc890fabf37d1d780e52/greenlet-3.2.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:02b0df6f63cd15012bed5401b47829cfd2e97052dc89da3cfaf2c779124eb892", size = 692995, upload-time = "2025-06-05T16:13:07.972Z" },
     { url = "https://files.pythonhosted.org/packages/5a/c6/ad82f148a4e3ce9564056453a71529732baf5448ad53fc323e37efe34f66/greenlet-3.2.3-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:86c2d68e87107c1792e2e8d5399acec2487a4e993ab76c792408e59394d52141", size = 655320, upload-time = "2025-06-05T16:12:53.453Z" },
     { url = "https://files.pythonhosted.org/packages/5c/4f/aab73ecaa6b3086a4c89863d94cf26fa84cbff63f52ce9bc4342b3087a06/greenlet-3.2.3-cp314-cp314-win_amd64.whl", hash = "sha256:8c47aae8fbbfcf82cc13327ae802ba13c9c36753b67e760023fd116bc124a62a", size = 301236, upload-time = "2025-06-05T16:15:20.111Z" },
+]
+
+[[package]]
+name = "griffe"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2d/42/486d21a6c33ff69a7381511d507b6db7a7b7f4d5bec3279bc0dc45c658a9/griffe-1.9.0.tar.gz", hash = "sha256:b5531cf45e9b73f0842c2121cc4d4bcbb98a55475e191fc9830e7aef87a920a0", size = 409341, upload-time = "2025-07-28T17:45:38.712Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/65/7b3fcef8c9fb6d1023484d9caf87e78450a5c9cd1e191ce9632990b65284/griffe-1.9.0-py3-none-any.whl", hash = "sha256:bcf90ee3ad42bbae70a2a490c782fc8e443de9b84aa089d857c278a4e23215fc", size = 137060, upload-time = "2025-07-28T17:45:36.973Z" },
 ]
 
 [[package]]
@@ -681,6 +709,7 @@ name = "narcissus"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "aci-sdk" },
     { name = "langchain" },
     { name = "langchain-openai" },
     { name = "langgraph" },
@@ -705,6 +734,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "aci-sdk", specifier = ">=1.0.0b3" },
     { name = "langchain", specifier = ">=0.2.0" },
     { name = "langchain-openai", specifier = ">=0.1.0" },
     { name = "langgraph", specifier = ">=0.2.0" },
