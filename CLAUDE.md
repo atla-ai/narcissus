@@ -63,3 +63,11 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 3. Access chat interface at http://localhost:3000
 
 The UI connects to the Python agent running on port 2024 by default.
+
+## Documentation References
+
+### LangGraph Documentation
+- **Main Guides**: https://langchain-ai.github.io/langgraph/guides/ - Navigate from here to specific subpages for tutorials, how-tos, and conceptual guides
+- **Python SDK Reference**: https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/ - Complete API documentation for LangGraph Python SDK
+
+These resources are essential for understanding LangGraph concepts, building workflows, and using advanced features beyond the basic chatbot implementation in this codebase.
