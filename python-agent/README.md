@@ -5,11 +5,13 @@ A basic LangGraph agent package.
 ## Development
 
 Install dependencies:
+
 ```bash
 uv sync
 ```
 
 Run the development server:
+
 ```bash
 langgraph dev --no-browser
 ```
