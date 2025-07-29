@@ -11,7 +11,7 @@ uv sync
 
 Run the development server:
 ```bash
-uv run dev
+langgraph dev --no-browser
 ```
 
 This starts the LangGraph server on port 2024 without opening a browser.

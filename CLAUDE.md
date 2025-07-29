@@ -14,7 +14,7 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 
 ### Python Agent (python-agent/)
 - **Install dependencies**: `uv sync` or `pip install -e .`
-- **Run development server**: `uv run dev` or `langgraph dev --no-browser` (starts local LangGraph server on port 2024)
+- **Run development server**: `langgraph dev --no-browser` (starts local LangGraph server on port 2024)
 - **Lint**: `ruff check .`
 - **Format**: `ruff format .`
 - **Type check**: `mypy .`
@@ -58,7 +58,7 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 
 ## Running the Full System
 
-1. Start Python agent: `cd python-agent && uv run dev`
+1. Start Python agent: `cd python-agent && langgraph dev --no-browser`
 2. Start UI: `cd ui && pnpm dev`
 3. Access chat interface at http://localhost:3000
 
@@ -70,4 +70,9 @@ The UI connects to the Python agent running on port 2024 by default.
 - **Main Guides**: https://langchain-ai.github.io/langgraph/guides/ - Navigate from here to specific subpages for tutorials, how-tos, and conceptual guides
 - **Python SDK Reference**: https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/ - Complete API documentation for LangGraph Python SDK
 
-These resources are essential for understanding LangGraph concepts, building workflows, and using advanced features beyond the basic chatbot implementation in this codebase.
+### ACI.dev Documentation
+- **GitHub Repository**: https://github.com/aipotheosis-labs/aci-agents - ACI agents implementation and examples
+- **Introduction & Overview**: https://www.aci.dev/docs/introduction/overview - Core concepts and getting started guide
+- **API Reference**: https://www.aci.dev/docs/api-reference/overview - Complete API documentation for ACI integration
+
+These resources are essential for understanding LangGraph concepts, building workflows, and integrating ACI tools for Narcissus's obsession-driven capabilities.
