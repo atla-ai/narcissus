@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 Narcissus is a dual-component system consisting of:
+
 1. **Python Agent** (`python-agent/`): A LangGraph-based AI agent using OpenAI's GPT-4o-mini
 2. **UI Frontend** (`ui/`): A Next.js chat interface for interacting with LangGraph agents
 
@@ -13,6 +14,7 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 ## Development Commands
 
 ### Python Agent (python-agent/)
+
 - **Install dependencies**: `uv sync` or `pip install -e .`
 - **Run development server**: `langgraph dev --no-browser` (starts local LangGraph server on port 2024)
 - **Lint**: `ruff check .`
@@ -21,6 +23,7 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 - **Test**: `pytest`
 
 ### UI Frontend (ui/)
+
 - **Install dependencies**: `pnpm install`
 - **Development server**: `pnpm dev` (runs on port 3000)
 - **Build**: `pnpm build`
@@ -31,12 +34,14 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 ## Architecture
 
 ### Python Agent Structure
+
 - `src/narcissus/agent.py`: Main agent implementation with `create_agent()` function
 - Uses LangGraph's StateGraph with MessagesState for chat workflow
 - Single "chatbot" node that processes messages through OpenAI's API
 - Configuration defined in `langgraph.json` with graph ID "agent"
 
 ### UI Structure
+
 - Built on Next.js 15 with TypeScript and Tailwind CSS
 - Uses LangGraph SDK for agent communication via API passthrough
 - Key components:
@@ -49,9 +54,11 @@ The Python agent creates a simple chatbot workflow, while the UI provides a prod
 ## Environment Configuration
 
 ### Python Agent
+
 - Requires `.env` file with OpenAI API key: `OPENAI_API_KEY=your_key_here`
 
 ### UI
+
 - `NEXT_PUBLIC_API_URL`: LangGraph server URL (default: http://localhost:2024 for local dev)
 - `NEXT_PUBLIC_ASSISTANT_ID`: Agent/graph ID (default: "agent")
 - For production: `LANGGRAPH_API_URL` and `LANGSMITH_API_KEY` for API passthrough
@@ -67,12 +74,25 @@ The UI connects to the Python agent running on port 2024 by default.
 ## Documentation References
 
 ### LangGraph Documentation
+
 - **Main Guides**: https://langchain-ai.github.io/langgraph/guides/ - Navigate from here to specific subpages for tutorials, how-tos, and conceptual guides
 - **Python SDK Reference**: https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/ - Complete API documentation for LangGraph Python SDK
 
 ### ACI.dev Documentation
+
 - **GitHub Repository**: https://github.com/aipotheosis-labs/aci-agents - ACI agents implementation and examples
 - **Introduction & Overview**: https://www.aci.dev/docs/introduction/overview - Core concepts and getting started guide
 - **API Reference**: https://www.aci.dev/docs/api-reference/overview - Complete API documentation for ACI integration
 
 These resources are essential for understanding LangGraph concepts, building workflows, and integrating ACI tools for Narcissus's obsession-driven capabilities.
+
+## Code Style Guidelines
+
+### Python Agent
+
+- **Follow all configuration in `pyproject.toml`**: All code style, linting, and formatting rules are defined there
+- **Line length limit**: 88 characters (as configured in `[tool.ruff]` section)
+- **Formatting**: Use `ruff format .` to automatically format code according to pyproject.toml settings
+- **Linting**: Use `ruff check .` to check for style violations according to pyproject.toml rules
+- **Type checking**: Use `mypy .` to check types according to `[tool.mypy]` configuration
+- **Best practices**: Always follow all code quality standards and best practices as defined in pyproject.toml
