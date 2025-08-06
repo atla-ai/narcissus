@@ -43,7 +43,7 @@ Copy this code into a Custom Code Embed element in Webflow
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #00bd83 0%, #009d6d 100%);
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -61,7 +61,7 @@ Copy this code into a Custom Code Embed element in Webflow
   }
 
   .chat-button.active {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    background: #b42318;
   }
 
   /* Chat Window */
@@ -90,7 +90,7 @@ Copy this code into a Custom Code Embed element in Webflow
 
   /* Header */
   .chat-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #00bd83 0%, #009d6d 100%);
     padding: 16px 20px;
     color: white;
     font-weight: 600;
@@ -195,7 +195,7 @@ Copy this code into a Custom Code Embed element in Webflow
   const CONFIG = {
     chatUrl: "https://narcissus-ui.onrender.com",
     title: "Ask me anything",
-    brandColor: "#667eea",
+    brandColor: "#00bd83",
   };
 
   let isOpen = false;
@@ -222,7 +222,7 @@ Copy this code into a Custom Code Embed element in Webflow
     // Load iframe on first open
     if (!isLoaded) {
       const iframe = document.getElementById("chatIframe");
-      iframe.onload = function() {
+      iframe.onload = function () {
         hideLoading();
       };
       iframe.src = CONFIG.chatUrl;
