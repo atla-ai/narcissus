@@ -372,7 +372,7 @@ export function Thread() {
                 </>
               }
               footer={
-                <div className="sticky bottom-0 flex flex-col items-center gap-6 bg-white">
+                <div className="sticky bottom-0 flex flex-col items-center gap-4 bg-white">
                   {!chatStarted && (
                     <>
                       <div className="mb-3 flex items-center gap-3">
@@ -389,8 +389,17 @@ export function Thread() {
                               explore our platform and tools.
                             </p>
                             <p>
-                              View the demo dashboard at{" "}
-                              <strong>app.atla-ai.com/app/narcissus</strong>
+                              View the demo dashboard to explore how Atla can
+                              help you improve your agent{" "}
+                              <a
+                                href="https://app.atla-ai.com/app/narcissus"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-600 underline hover:text-gray-800"
+                              >
+                                here
+                              </a>
+                              .
                             </p>
                             <p className="font-medium text-orange-600">
                               ⚠️ All conversations are public!
