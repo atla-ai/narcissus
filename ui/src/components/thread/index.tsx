@@ -91,7 +91,7 @@ function OpenGitHubRepo() {
       <Tooltip>
         <TooltipTrigger asChild>
           <a
-            href="https://github.com/langchain-ai/agent-chat-ui"
+            href="https://github.com/atla-ai/narcissus"
             target="_blank"
             className="flex items-center justify-center"
           >
@@ -260,6 +260,11 @@ export function Thread() {
             !chatStarted && "grid-rows-[1fr]",
           )}
         >
+          {!chatStarted && (
+            <div className="absolute top-2 right-4 z-10 flex items-center">
+              <OpenGitHubRepo />
+            </div>
+          )}
           {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               <div className="relative flex items-center justify-start gap-2">
