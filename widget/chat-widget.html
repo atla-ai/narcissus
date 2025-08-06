@@ -193,9 +193,12 @@
     </div>
 
     <script>
-      // Configuration - Update these URLs with your Render deployment URLs
+      // Configuration - Change chatUrl for local development vs production
+      const CHAT_URL = "https://narcissus-ui.onrender.com"; // Production
+      // const CHAT_URL = "http://localhost:3000"; // Local development
+      
       const CONFIG = {
-        chatUrl: "https://narcissus-ui.onrender.com", // Replace with your actual UI URL
+        chatUrl: CHAT_URL,
         title: "Ask me anything",
         brandColor: "#00bd83",
       };
