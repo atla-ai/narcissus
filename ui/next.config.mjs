@@ -12,7 +12,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' *",
+            value: "frame-ancestors 'self' https: http: file: data: *;",
           },
         ],
       },
