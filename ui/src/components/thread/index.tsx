@@ -1,48 +1,37 @@
-import { v4 as uuidv4 } from "uuid";
-import { ReactNode, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useStreamContext } from "@/providers/Stream";
-import { useState, FormEvent } from "react";
-import { Button } from "../ui/button";
-import { Checkpoint, Message } from "@langchain/langgraph-sdk";
-import { AssistantMessage, AssistantMessageLoading } from "./messages/ai";
-import { HumanMessage } from "./messages/human";
 import {
   DO_NOT_RENDER_ID_PREFIX,
   ensureToolCallsHaveResponses,
 } from "@/lib/ensure-tool-responses";
-import { AtlaLogoSVG } from "../icons/atla";
-import { TooltipIconButton } from "./tooltip-icon-button";
-import {
-  ArrowDown,
-  LoaderCircle,
-  SquarePen,
-  XIcon,
-  Plus,
-  CircleX,
-} from "lucide-react";
-import { useQueryState, parseAsBoolean } from "nuqs";
-import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
+import { cn } from "@/lib/utils";
+import { useStreamContext } from "@/providers/Stream";
+import { Checkpoint, Message } from "@langchain/langgraph-sdk";
+import { motion } from "framer-motion";
+import { ArrowDown, LoaderCircle, SquarePen, XIcon } from "lucide-react";
+import { parseAsBoolean, useQueryState } from "nuqs";
+import { FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
+import { v4 as uuidv4 } from "uuid";
+import { AtlaLogoSVG } from "../icons/atla";
+import { GitHubSVG } from "../icons/github";
+import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
-import { GitHubSVG } from "../icons/github";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { useFileUpload } from "@/hooks/use-file-upload";
-import { ContentBlocksPreview } from "./ContentBlocksPreview";
 import {
-  useArtifactOpen,
   ArtifactContent,
   ArtifactTitle,
   useArtifactContext,
+  useArtifactOpen,
 } from "./artifact";
+import { AssistantMessage, AssistantMessageLoading } from "./messages/ai";
+import { HumanMessage } from "./messages/human";
+import { TooltipIconButton } from "./tooltip-icon-button";
 
 function StickyToBottomContent(props: {
   content: ReactNode;
@@ -119,18 +108,7 @@ export function Thread() {
     parseAsBoolean.withDefault(false),
   );
   const [input, setInput] = useState("");
-  const {
-    contentBlocks,
-    setContentBlocks,
-    handleFileUpload,
-    dropRef,
-    removeBlock,
-    resetBlocks,
-    dragOver,
-    handlePaste,
-  } = useFileUpload();
   const [firstTokenReceived, setFirstTokenReceived] = useState(false);
-  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
   const stream = useStreamContext();
   const messages = stream.messages;
@@ -190,17 +168,13 @@ export function Thread() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if ((input.trim().length === 0 && contentBlocks.length === 0) || isLoading)
-      return;
+    if (input.trim().length === 0 || isLoading) return;
     setFirstTokenReceived(false);
 
     const newHumanMessage: Message = {
       id: uuidv4(),
       type: "human",
-      content: [
-        ...(input.trim().length > 0 ? [{ type: "text", text: input }] : []),
-        ...contentBlocks,
-      ] as Message["content"],
+      content: [{ type: "text", text: input }] as Message["content"],
     };
 
     const toolMessages = ensureToolCallsHaveResponses(stream.messages);
@@ -225,7 +199,6 @@ export function Thread() {
     );
 
     setInput("");
-    setContentBlocks([]);
   };
 
   const handleRegenerate = (
@@ -247,7 +220,6 @@ export function Thread() {
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
-
       <div
         className={cn(
           "grid w-full grid-cols-[1fr_0fr] transition-all duration-500",
@@ -283,6 +255,35 @@ export function Thread() {
               </div>
 
               <div className="flex items-center gap-4">
+                <div className="flex items-center">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center space-x-1.5">
+                          <Switch
+                            id="render-tool-calls"
+                            checked={!hideToolCalls}
+                            onCheckedChange={(checked) =>
+                              setHideToolCalls(!checked)
+                            }
+                            className="scale-75"
+                          />
+                          <Label
+                            htmlFor="render-tool-calls"
+                            className="cursor-pointer text-xs text-gray-500"
+                          >
+                            Display tool calls
+                          </Label>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>
+                          Toggle off to hide details of the agent's tool calls.
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 <div className="flex items-center">
                   <OpenGitHubRepo />
                 </div>
@@ -358,26 +359,18 @@ export function Thread() {
                   <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
 
                   <div
-                    ref={dropRef}
                     className={cn(
                       "bg-muted relative z-10 mx-auto mb-8 w-full max-w-4xl rounded-2xl shadow-xs transition-all",
-                      dragOver
-                        ? "border-primary border-2 border-dotted"
-                        : "border border-solid",
+                      "border border-solid",
                     )}
                   >
                     <form
                       onSubmit={handleSubmit}
                       className="mx-auto grid max-w-4xl grid-rows-[1fr_auto] gap-2"
                     >
-                      <ContentBlocksPreview
-                        blocks={contentBlocks}
-                        onRemove={removeBlock}
-                      />
                       <textarea
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        onPaste={handlePaste}
                         onKeyDown={(e) => {
                           if (
                             e.key === "Enter" &&
@@ -395,39 +388,7 @@ export function Thread() {
                         className="field-sizing-content resize-none border-none bg-transparent p-3.5 pb-0 shadow-none ring-0 outline-none focus:ring-0 focus:outline-none"
                       />
 
-                      <div className="flex items-center gap-6 p-2 pt-4">
-                        <div>
-                          <div className="flex items-center space-x-2">
-                            <Switch
-                              id="render-tool-calls"
-                              checked={hideToolCalls ?? false}
-                              onCheckedChange={setHideToolCalls}
-                            />
-                            <Label
-                              htmlFor="render-tool-calls"
-                              className="text-sm text-gray-600"
-                            >
-                              Hide Tool Calls
-                            </Label>
-                          </div>
-                        </div>
-                        <Label
-                          htmlFor="file-input"
-                          className="flex cursor-pointer items-center gap-2"
-                        >
-                          <Plus className="size-5 text-gray-600" />
-                          <span className="text-sm text-gray-600">
-                            Upload PDF or Image
-                          </span>
-                        </Label>
-                        <input
-                          id="file-input"
-                          type="file"
-                          onChange={handleFileUpload}
-                          multiple
-                          accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
-                          className="hidden"
-                        />
+                      <div className="flex items-center justify-end p-2 pt-4">
                         {stream.isLoading ? (
                           <Button
                             key="stop"
@@ -441,10 +402,7 @@ export function Thread() {
                           <Button
                             type="submit"
                             className="ml-auto shadow-md transition-all"
-                            disabled={
-                              isLoading ||
-                              (!input.trim() && contentBlocks.length === 0)
-                            }
+                            disabled={isLoading || !input.trim()}
                           >
                             Send
                           </Button>
