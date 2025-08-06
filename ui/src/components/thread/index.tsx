@@ -361,21 +361,21 @@ export function Thread() {
                 </>
               }
               footer={
-                <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
+                <div className="sticky bottom-0 flex flex-col items-center gap-6 bg-white">
                   {!chatStarted && (
                     <>
-                      <div className="mb-6 flex items-center gap-3">
+                      <div className="mb-3 flex items-center gap-3">
                         <AtlaLogoSVG className="h-8 flex-shrink-0" />
                         <h1 className="text-2xl font-semibold tracking-tight">
                           Narcissus AI
                         </h1>
                       </div>
                       <div className="text-center">
-                        <div className="mx-auto max-w-2xl rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-green-100 p-6">
-                          <h2 className="mb-2 text-lg font-semibold text-gray-800">
+                        <div className="mx-auto max-w-2xl rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-green-100 p-4">
+                          <h2 className="mb-1 text-base font-semibold text-gray-800">
                             Welcome to Narcissus AI
                           </h2>
-                          <p className="text-sm leading-relaxed text-gray-600">
+                          <p className="text-sm text-gray-600">
                             {WELCOME_MESSAGE}
                           </p>
                         </div>
