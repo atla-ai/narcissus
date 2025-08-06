@@ -33,6 +33,8 @@ import { AssistantMessage, AssistantMessageLoading } from "./messages/ai";
 import { HumanMessage } from "./messages/human";
 import { TooltipIconButton } from "./tooltip-icon-button";
 
+const WELCOME_MESSAGE = "I can help you with questions, research, writing, and more. Ask me anything to get started!";
+
 function StickyToBottomContent(props: {
   content: ReactNode;
   footer?: ReactNode;
@@ -240,15 +242,26 @@ export function Thread() {
           {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               <div className="relative flex items-center justify-start gap-2">
-                <div className="flex items-center gap-2">
-                  <AtlaLogoSVG
-                    width={32}
-                    height={32}
-                  />
-                  <span className="text-xl font-semibold tracking-tight">
-                    Narcissus AI
-                  </span>
-                </div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center gap-2">
+                        <AtlaLogoSVG
+                          width={32}
+                          height={32}
+                        />
+                        <span className="text-xl font-semibold tracking-tight">
+                          Narcissus AI
+                        </span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-xs">
+                      <p className="text-sm">
+                        {WELCOME_MESSAGE}
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
 
               <div className="flex items-center gap-4">
@@ -345,12 +358,24 @@ export function Thread() {
               footer={
                 <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
                   {!chatStarted && (
-                    <div className="flex items-center gap-3">
-                      <AtlaLogoSVG className="h-8 flex-shrink-0" />
-                      <h1 className="text-2xl font-semibold tracking-tight">
-                        Narcissus AI
-                      </h1>
-                    </div>
+                    <>
+                      <div className="flex items-center gap-3 mb-6">
+                        <AtlaLogoSVG className="h-8 flex-shrink-0" />
+                        <h1 className="text-2xl font-semibold tracking-tight">
+                          Narcissus AI
+                        </h1>
+                      </div>
+                      <div className="text-center">
+                        <div className="mx-auto max-w-2xl rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-green-100 p-6">
+                          <h2 className="mb-2 text-lg font-semibold text-gray-800">
+                            Welcome to Narcissus AI
+                          </h2>
+                          <p className="text-sm leading-relaxed text-gray-600">
+                            {WELCOME_MESSAGE}
+                          </p>
+                        </div>
+                      </div>
+                    </>
                   )}
 
                   <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
