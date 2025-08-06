@@ -14,12 +14,13 @@ import { cn } from "@/lib/utils";
 export type TooltipIconButtonProps = ButtonProps & {
   tooltip: string;
   side?: "top" | "bottom" | "left" | "right";
+  collisionPadding?: number;
 };
 
 export const TooltipIconButton = forwardRef<
   HTMLButtonElement,
   TooltipIconButtonProps
->(({ children, tooltip, side = "bottom", className, ...rest }, ref) => {
+>(({ children, tooltip, side = "bottom", collisionPadding, className, ...rest }, ref) => {
   return (
     <TooltipProvider>
       <Tooltip>
@@ -35,7 +36,13 @@ export const TooltipIconButton = forwardRef<
             <span className="sr-only">{tooltip}</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent side={side}>{tooltip}</TooltipContent>
+        <TooltipContent 
+          side={side} 
+          collisionPadding={collisionPadding}
+          avoidCollisions={collisionPadding !== undefined}
+        >
+          {tooltip}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

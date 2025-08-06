@@ -33,7 +33,8 @@ import { AssistantMessage, AssistantMessageLoading } from "./messages/ai";
 import { HumanMessage } from "./messages/human";
 import { TooltipIconButton } from "./tooltip-icon-button";
 
-const WELCOME_MESSAGE = "I can help you with questions, research, writing, and more. Ask me anything to get started!";
+const WELCOME_MESSAGE =
+  "I can help you with questions, research, writing, and more. Ask me anything to get started!";
 
 function StickyToBottomContent(props: {
   content: ReactNode;
@@ -255,10 +256,13 @@ export function Thread() {
                         </span>
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent side="bottom" className="max-w-xs">
-                      <p className="text-sm">
-                        {WELCOME_MESSAGE}
-                      </p>
+                    <TooltipContent
+                      side="bottom"
+                      className="max-w-xs"
+                      avoidCollisions={true}
+                      collisionPadding={5}
+                    >
+                      <p className="text-sm">{WELCOME_MESSAGE}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -302,6 +306,7 @@ export function Thread() {
                   className="p-4"
                   tooltip="New thread"
                   variant="ghost"
+                  collisionPadding={5}
                   onClick={() => setThreadId(null)}
                 >
                   <SquarePen className="size-5" />
@@ -359,7 +364,7 @@ export function Thread() {
                 <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
                   {!chatStarted && (
                     <>
-                      <div className="flex items-center gap-3 mb-6">
+                      <div className="mb-6 flex items-center gap-3">
                         <AtlaLogoSVG className="h-8 flex-shrink-0" />
                         <h1 className="text-2xl font-semibold tracking-tight">
                           Narcissus AI
