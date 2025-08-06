@@ -33,9 +33,6 @@ import { AssistantMessage, AssistantMessageLoading } from "./messages/ai";
 import { HumanMessage } from "./messages/human";
 import { TooltipIconButton } from "./tooltip-icon-button";
 
-const WELCOME_MESSAGE =
-  "I can help you with questions, research, writing, and more. Ask me anything to get started!";
-
 function StickyToBottomContent(props: {
   content: ReactNode;
   footer?: ReactNode;
@@ -262,7 +259,21 @@ export function Thread() {
                       avoidCollisions={true}
                       collisionPadding={5}
                     >
-                      <p className="text-sm">{WELCOME_MESSAGE}</p>
+                      <div className="space-y-1 text-sm">
+                        <p className="text-xs">
+                          <a
+                            href="https://app.atla-ai.com/app/narcissus"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 underline hover:text-gray-800"
+                          >
+                            View logs with Atla
+                          </a>
+                        </p>
+                        <p className="text-xs font-medium text-white">
+                          ⚠️ All conversations are public!
+                        </p>
+                      </div>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -372,12 +383,19 @@ export function Thread() {
                       </div>
                       <div className="text-center">
                         <div className="mx-auto max-w-2xl rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-green-100 p-4">
-                          <h2 className="mb-1 text-base font-semibold text-gray-800">
-                            Welcome to Narcissus AI
-                          </h2>
-                          <p className="text-sm text-gray-600">
-                            {WELCOME_MESSAGE}
-                          </p>
+                          <div className="space-y-2 text-sm text-gray-600">
+                            <p>
+                              Narcissus is a demo chatbot designed to help you
+                              explore our platform and tools.
+                            </p>
+                            <p>
+                              View the demo dashboard at{" "}
+                              <strong>app.atla-ai.com/app/narcissus</strong>
+                            </p>
+                            <p className="font-medium text-orange-600">
+                              ⚠️ All conversations are public!
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </>
