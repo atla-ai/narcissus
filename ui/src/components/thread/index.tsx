@@ -278,7 +278,7 @@ export function Thread() {
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>
-                          Toggle off to hide details of the agent's tool calls.
+                          Toggle off to hide details of the agent's tool calls
                         </p>
                       </TooltipContent>
                     </Tooltip>
