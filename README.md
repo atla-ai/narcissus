@@ -4,8 +4,8 @@
 
 **Narcissus** is a _public_ demo system designed to serve multiple purposes:
 
-1. Serve as an agentic tool that potential customers can use to learn more about Atla and hopefully convert to customers.
-2. Provide an agent instrumented with Atla Insights which populates a public demo account.
+1. Serve as an agentic tool that potential customers can use to learn more about [Atla](https://atla-ai.com) and hopefully convert to customers.
+2. Provide an agent instrumented with Atla Insights which populates a public demo account on the Atla platform.
 
 > [!TIP]
 > This demo account can be accessed at https://app.atla-ai.com/app/narcissus.
