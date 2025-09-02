@@ -8,7 +8,7 @@
 2. Provide an agent instrumented with Atla Insights which populates a public demo account on the Atla platform.
 
 > [!TIP]
-> This demo account can be accessed at https://app.atla-ai.com/app/narcissus.
+> This demo account can be accessed at https://demo.atla-ai.com/app/narcissus.
 
 ## Project Structure
 

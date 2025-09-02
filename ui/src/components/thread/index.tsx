@@ -262,7 +262,7 @@ export function Thread() {
                       <div className="space-y-1 text-sm">
                         <p className="text-xs">
                           <a
-                            href="https://app.atla-ai.com/app/narcissus"
+                            href="https://demo.atla-ai.com/app/narcissus"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-600 underline hover:text-gray-800"
@@ -392,7 +392,7 @@ export function Thread() {
                               View the demo dashboard to explore how Atla can
                               help you improve your agent{" "}
                               <a
-                                href="https://app.atla-ai.com/app/narcissus"
+                                href="https://demo.atla-ai.com/app/narcissus"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-600 underline hover:text-gray-800"
